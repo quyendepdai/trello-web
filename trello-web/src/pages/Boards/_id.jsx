@@ -1,17 +1,19 @@
 // Boards Details
 import { Container } from '@mui/material' //quick custom css
-import AppBar from '~/components/AppBar'
-import BoardBar from './BoardBar'
-import BoardContent from './BoardContent'
+import AppBar from '~/components/AppBar/AppBar'
+import BoardBar from './BoardBar/BoardBar'
+import BoardContent from './BoardContent/BoardContent'
+
+import { mockData } from '~/apis/mock-data'
 
 function Board() {
   return (
     <Container disableGutters maxWidth={false} sx={{ height: '100vh' }}>
       <AppBar />
 
-      <BoardBar />
+      <BoardBar board={mockData?.board} />
 
-      <BoardContent />
+      <BoardContent board={mockData?.board} />
     </Container>
   )
 }
