@@ -1,0 +1,12 @@
+node 18.16.0
+
+npm create vite@latest
+
+npm install @mui/material @emotion/react @emotion/styled
+npm install --save-dev vite-plugin-svgr
+
+backend
+npm i async-exit-hook
+
+FC2-PPV-1174741
+meiyxtxin
