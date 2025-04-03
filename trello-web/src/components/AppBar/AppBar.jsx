@@ -36,20 +36,14 @@ function AppBar() {
         justifyContent: 'space-between',
         gap: 2,
         overflowX: 'auto',
-        bgcolor: (theme) =>
-          theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0',
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0'),
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <AppsIcon sx={{ color: 'white' }} />
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <SvgIcon
-            sx={{ color: 'white' }}
-            fontSize="small"
-            component={TrelloIcon}
-            inheritViewBox
-          />
+          <SvgIcon sx={{ color: 'white' }} fontSize="small" component={TrelloIcon} inheritViewBox />
           <Typography
             variant="span"
             sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'white' }}
@@ -91,14 +85,16 @@ function AppBar() {
               </InputAdornment>
             ),
             endAdornment: (
-              <CloseIcon
-                onClick={() => setSearchValue('')}
-                fontSize="small"
-                sx={{
-                  color: searchValue ? 'white' : 'transparent',
-                  cursor: 'pointer',
-                }}
-              />
+              <InputAdornment position="end">
+                <CloseIcon
+                  onClick={() => setSearchValue('')}
+                  fontSize="small"
+                  sx={{
+                    color: searchValue ? 'white' : 'transparent',
+                    cursor: 'pointer',
+                  }}
+                />
+              </InputAdornment>
             ),
           }}
           sx={{

@@ -7,18 +7,18 @@ import CardItem from './ListColumns/Column/ListCards/CardItem/CardItem'
 import {
   DndContext,
   //PointerSensor,
-  MouseSensor,
-  TouchSensor,
   useSensor,
   useSensors,
   DragOverlay,
   defaultDropAnimationSideEffects,
   closestCorners,
   pointerWithin,
-  rectIntersection,
+  // rectIntersection,
   getFirstCollision,
   closestCenter,
 } from '@dnd-kit/core'
+import { MouseSensor, TouchSensor } from '~/customLibraries/DndKitSensors'
+
 import { arrayMove } from '@dnd-kit/sortable'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -30,7 +30,7 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD',
 }
 
-function BoardContent({ board }) {
+function BoardContent({ board, createNewColumn, createNewCard, moveColumn }) {
   //https://docs.dndkit.com/api-documentation/sensors
   // nếu sử dụng pointerSensor mặc định thì phải sử dụng kết hợp thuộc tính CSS touch-action: none
   // ở phần tử kéo thả - nhưng mà còn bug sử dụng không ngon trên mobile
@@ -298,6 +298,7 @@ function BoardContent({ board }) {
 
         // update columnOrderIds -> API -> update Database
         //const dndOrderedColumnIds = dndOrderedColumn.map((c) => c._id)
+        moveColumn(dndOrderedColumn)
 
         // Cập nhật lại state columns sau khi đã kéo thả
         setOrderedColumns(dndOrderedColumn)
@@ -377,7 +378,11 @@ function BoardContent({ board }) {
           p: '10px 0',
         }}
       >
-        <ListColumns columns={orderedColumns} />
+        <ListColumns
+          columns={orderedColumns}
+          createNewColumn={createNewColumn}
+          createNewCard={createNewCard}
+        />
 
         {/* Giữ chỗ */}
         <DragOverlay dropAnimation={dropAnimation}>
